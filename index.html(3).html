@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>CPA Grip • Exclusive Reward Access</title>
+  <!-- Google Fonts: Inter (Modern, clean) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(145deg, #1a0b2e 0%, #2a0a3a 35%, #3b1b4b 100%);
+      min-height: 100vh;
+      padding: 0 0 48px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Mobile-first container with max-width 440px, premium card style */
+    .app-container {
+      max-width: 440px;
+      width: 100%;
+      margin: 0 auto;
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* STICKY HEADER (black) */
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: #000000;
+      backdrop-filter: blur(0px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      width: 100%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .back-icon {
+      font-size: 24px;
+      font-weight: 400;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 30px;
+      transition: background 0.2s;
+    }
+    .back-icon:active { background: rgba(255,255,255,0.1); transform: scale(0.96); }
+
+    .header-title {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+      color: #f5f5f5;
+      background: rgba(255,255,255,0.05);
+      padding: 6px 14px;
+      border-radius: 40px;
+      backdrop-filter: blur(2px);
+    }
+
+    /* spacer to keep layout clean */
+    .hero-section {
+      padding: 28px 20px 12px 20px;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      line-height: 1.3;
+      color: white;
+      letter-spacing: -0.3px;
+      margin-bottom: 12px;
+    }
+    .highlight {
+      color: #fde047; /* yellow */
+      background: linear-gradient(135deg, #fde047 0%, #ffdc38 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: #fde047;
+      display: inline-block;
+    }
+    .hero-sub {
+      font-size: 0.95rem;
+      color: #d9c6f0;
+      font-weight: 500;
+      background: rgba(255,255,240,0.05);
+      display: inline-block;
+      padding: 4px 16px;
+      border-radius: 40px;
+      backdrop-filter: blur(2px);
+    }
+
+    /* Card Styles (white, rounded, shadow, fade-in) */
+    .card {
+      background: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(0,0,0,0.05);
+      padding: 28px 24px;
+      margin: 16px 20px;
+      transition: transform 0.2s ease, box-shadow 0.2s;
+      animation: fadeSlideUp 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .card:first-of-type { animation-delay: 0.05s; }
+    .card:last-of-type { animation-delay: 0.15s; }
+
+    @keyframes fadeSlideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card-title {
+      font-size: 1.7rem;
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: -0.3px;
+      background: linear-gradient(135deg, #e11d48, #f97316);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 8px;
+    }
+    .card-sub {
+      text-align: center;
+      color: #4a4e69;
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    /* Timer box */
+    .timer-box {
+      background: #fff0f0;
+      border-radius: 60px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      width: 100%;
+      margin: 8px 0 20px 0;
+      font-weight: 700;
+      font-size: 1.3rem;
+      background: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #ffcdd2;
+    }
+    .timer-icon {
+      font-size: 1.4rem;
+    }
+    .timer-digits {
+      font-family: 'Inter', monospace;
+      letter-spacing: 1px;
+    }
+
+    /* CTA Button */
+    .cta-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background: linear-gradient(105deg, #f43f5e 0%, #e11d48 100%);
+      border: none;
+      padding: 18px 16px;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: white;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 10px 20px -5px rgba(244, 63, 94, 0.4);
+      margin: 12px 0 16px 0;
+    }
+    .cta-button:active {
+      transform: scale(0.98);
+      box-shadow: 0 6px 12px -3px rgba(225, 29, 72, 0.5);
+    }
+    .social-proof {
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #15803d;
+      background: #e6f7ec;
+      display: inline-block;
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 40px;
+      margin-top: 8px;
+    }
+
+    /* How it works */
+    .how-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .step-number {
+      background: #1e293b;
+      color: white;
+      font-weight: 800;
+      font-size: 1.25rem;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 60px;
+      background: linear-gradient(145deg, #2d3a4e, #0f172a);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+    .step-text {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #1e293b;
+      letter-spacing: -0.2px;
+    }
+    .footer-disclaimer {
+      text-align: center;
+      font-size: 0.7rem;
+      color: #cfb3e6;
+      margin-top: 28px;
+      margin-bottom: 10px;
+      padding: 0 24px;
+      opacity: 0.75;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 22px 20px;
+        margin: 14px 16px;
+      }
+      .hero-title {
+        font-size: 1.65rem;
+      }
+      .cta-button {
+        font-size: 1rem;
+        padding: 16px 12px;
+      }
+      .timer-digits {
+        font-size: 1.2rem;
+      }
+    }
+    /* micro adjustments */
+    .inline-icon {
+      font-size: 1.2rem;
+      vertical-align: middle;
+    }
+    .fake-link {
+      cursor: pointer;
+    }
+    button {
+      background: none;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+<div class="app-container">
+  <!-- Top Bar: black sticky header -->
+  <div class="sticky-header">
+    <div class="back-icon" aria-label="Go back" role="button">←</div>
+    <div class="header-title">Exclusive Reward Access</div>
+    <div style="width: 32px;"></div> <!-- spacer for alignment -->
+  </div>
+
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <h1 class="hero-title">
+      🎁 Unlock Your ₹500 Paytm/UPJ <span class="highlight">Exclusive Reward</span>
+    </h1>
+    <div class="hero-sub">✨ Only available for a limited number of users ✨</div>
+  </div>
+
+  <!-- Main Card 1 - Reward Access -->
+  <div class="card">
+    <div class="card-title">🔥 Reward Access</div>
+    <div class="card-sub">Complete a simple step to unlock your reward</div>
+    
+    <!-- Timer (real JS countdown 90 seconds) -->
+    <div class="timer-box">
+      <span class="timer-icon">⏳</span>
+      <span class="timer-digits" id="countdownTimer">01:30</span>
+    </div>
+    
+    <!-- CTA Button with actual OFFER_LINK -->
+    <a href="https://singingfiles.com/show.php?l=0&u=2517579&id=36521" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: block;">
+      <button class="cta-button" id="mainCtaButton">
+        👉 Continue to Unlock
+      </button>
+    </a>
+    
+    <!-- Social Proof dynamic number (19-34) -->
+    <div class="social-proof" id="socialProofBox">
+      ✔ <span id="activeUsersCount">27</span> people are claiming now
+    </div>
+  </div>
+
+  <!-- Main Card 2 - How it works -->
+  <div class="card">
+    <div class="how-title">
+      📌 How it works:
+    </div>
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-text">Click the button above</div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-text">Complete a quick step (survey / offer)</div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-text">Unlock your $750 CashApp reward instantly</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Disclaimer -->
+  <div class="footer-disclaimer">
+    This promotion is not affiliated with any specific brand.
+  </div>
+</div>
+
+<script>
+  (function() {
+    "use strict";
+
+    // -------- 1. COUNTDOWN TIMER (90 seconds) --------
+    let timeLeft = 90; // seconds
+    const timerElement = document.getElementById('countdownTimer');
+    
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+    
+    function updateTimerDisplay() {
+      if (timerElement) {
+        timerElement.innerText = formatTime(timeLeft);
+        // Optional: change color when less than 15s (add sense of urgency)
+        const timerBox = document.querySelector('.timer-box');
+        if (timeLeft <= 15) {
+          timerBox.style.background = "#ffc2c2";
+          timerBox.style.color = "#a10000";
+          timerBox.style.transition = "all 0.2s";
+        } else {
+          timerBox.style.background = "#fee2e2";
+          timerBox.style.color = "#b91c1c";
+        }
+      }
+    }
+    
+    let timerInterval = setInterval(function() {
+      if (timeLeft <= 1) {
+        // Timer reaches zero: stop and display 00:00, but keep functionality
+        clearInterval(timerInterval);
+        timeLeft = 0;
+        updateTimerDisplay();
+        // Optionally show expired message, but not blocking user action.
+        if (timerElement) {
+          const parentTimer = document.querySelector('.timer-box');
+          if (parentTimer && !parentTimer.querySelector('.expired-badge')) {
+            const expiredMsg = document.createElement('span');
+            expiredMsg.innerText = ' ⚠️ Expired';
+            expiredMsg.style.fontSize = '0.7rem';
+            expiredMsg.style.marginLeft = '6px';
+            expiredMsg.style.fontWeight = '500';
+            parentTimer.appendChild(expiredMsg);
+          }
+        }
+      } else {
+        timeLeft--;
+        updateTimerDisplay();
+      }
+    }, 1000);
+    
+    // Ensure display initial
+    updateTimerDisplay();
+
+    // -------- 2. DYNAMIC SOCIAL PROOF (changes between 19-34 every 3-5 sec) --------
+    const activeUsersSpan = document.getElementById('activeUsersCount');
+    if (activeUsersSpan) {
+      let currentNumber = 27; // starting value
+      
+      function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+      
+      function updateSocialProofNumber() {
+        // generate random 19-34 inclusive, but avoid same as current? optional
+        let newNumber = getRandomInt(19, 34);
+        // minor smoothness: avoid big jumps if wanted? not mandatory
+        if (newNumber === currentNumber) {
+          newNumber = newNumber === 34 ? 33 : newNumber + 1;
+          if (newNumber > 34) newNumber = 19;
+        }
+        currentNumber = newNumber;
+        activeUsersSpan.innerText = currentNumber;
+      }
+      
+      // Set interval: between 3000ms and 5000ms dynamic or fixed 4 sec but better to randomize interval
+      let timeoutId;
+      function scheduleProofUpdate() {
+        const delay = Math.floor(Math.random() * (5000 - 3000 + 1) + 3000); // 3-5 seconds
+        timeoutId = setTimeout(() => {
+          updateSocialProofNumber();
+          scheduleProofUpdate(); // recursive scheduling
+        }, delay);
+      }
+      scheduleProofUpdate();
+      
+      // Clean up on page unload (optional)
+      window.addEventListener('beforeunload', function() {
+        if (timeoutId) clearTimeout(timeoutId);
+      });
+    }
+    
+    // -------- 3. Additional micro-interactions: button active state & scale handled by CSS,
+    // but we also want to simulate that clicking the button leads to offer link correctly.
+    // The main CTA is wrapped with <a> tag that points to {OFFER_LINK}. Already done.
+    // Also for back arrow: small haptic feedback (does nothing but feels interactive)
+    const backBtn = document.querySelector('.back-icon');
+    if (backBtn) {
+      backBtn.addEventListener('click', function(e) {
+        // simulate a "back" action: can do nothing (just UI feedback) 
+        // but for UX we can add a subtle animation and no page change, because it's demo
+        e.preventDefault();
+        backBtn.style.transform = 'scale(0.94)';
+        setTimeout(() => {
+          if (backBtn) backBtn.style.transform = '';
+        }, 130);
+        // optional console (no redirect, but CPA page doesn't require back functionality)
+      });
+    }
+    
+    // For extra polish: Ensure the timer interval does not cause memory leaks, but fine.
+    // Also apply custom handling for any edge: if the countdown reaches zero, the offer button still works
+    // but we can optionally display a small note. It's fine for CPA locker style.
+    
+    // Dynamic performance: add a simple fade-in effect consistency (already CSS animated cards)
+    // Also for fun, we can set a visit counter vibe using localStorage, not needed.
+    
+    // Additional security/behavior: prevent double accidental navigation but anchor handles it.
+    // Make sure timer doesn't run multiple intervals after hot reload (fine)
+    
+    // Preload any other visual: hover states & no console errors.
+    
+    // For "limited number of users" and timer urgency, we also mimic realistic experience
+    // Also add a micro pop effect on social proof number update for liveliness
+    const socialDiv = document.getElementById('socialProofBox');
+    if (socialDiv && activeUsersSpan) {
+      const originalTransition = (cssVal) => {};
+      const flashEffect = () => {
+        if (activeUsersSpan) {
+          activeUsersSpan.style.transition = 'all 0.1s';
+          activeUsersSpan.style.transform = 'scale(1.08)';
+          activeUsersSpan.style.display = 'inline-block';
+          setTimeout(() => {
+            if (activeUsersSpan) {
+              activeUsersSpan.style.transform = 'scale(1)';
+            }
+          }, 150);
+        }
+      };
+      // Override updateSocialProofNumber to also add flash
+      const originalUpdate = updateSocialProofNumber;
+      window.updateSocialProofNumber = updateSocialProofNumber; // not needed
+      // Replace with enhanced version to add visual micro-interaction
+      if (activeUsersSpan) {
+        const enhancedUpdate = function() {
+          let newNumber = getRandomInt(19, 34);
+          if (newNumber === currentNumber) {
+            newNumber = newNumber === 34 ? 33 : newNumber + 1;
+            if (newNumber > 34) newNumber = 19;
+          }
+          currentNumber = newNumber;
+          activeUsersSpan.innerText = currentNumber;
+          // Flash effect
+          activeUsersSpan.style.transform = 'scale(1.12)';
+          activeUsersSpan.style.fontWeight = '800';
+          setTimeout(() => {
+            if (activeUsersSpan) {
+              activeUsersSpan.style.transform = '';
+              activeUsersSpan.style.fontWeight = '';
+            }
+          }, 180);
+        };
+        // Override schedule to use new function
+        clearTimeout(timeoutId);
+        const newSchedule = () => {
+          const delay = Math.floor(Math.random() * (5000 - 3000 + 1) + 3000);
+          timeoutId = setTimeout(() => {
+            enhancedUpdate();
+            newSchedule();
+          }, delay);
+        };
+        newSchedule();
+        // store original currentNumber and apply update for global consistency
+        window.cleanupProof = () => clearTimeout(timeoutId);
+      }
+    }
+    
+    // Actually because we redefined the dynamic scheduling, we must ensure we don't double-run.
+    // The above code block inside if (socialDiv) overwrites the schedule, to avoid collision we must 
+    // stop previous scheduleProofUpdate function. So we reassign properly.
+    // More robust: reinitialize cleanly. Let's refactor: stop any previous scheduler.
+    let dynamicIntervalId = null;
+    const socialSpan = document.getElementById('activeUsersCount');
+    if (socialSpan) {
+      // clear any old scheduled from first naive implementation (the scheduleProofUpdate might have started already)
+      if (typeof window.__proofTimeout !== 'undefined') clearTimeout(window.__proofTimeout);
+      if (window.socialIntervalCleanup) window.socialIntervalCleanup();
+      let currentActive = 27;
+      let updateTimerId = null;
+      
+      function getSocialRandom() {
+        return Math.floor(Math.random() * (34 - 19 + 1)) + 19;
+      }
+      
+      function refreshNumber() {
+        let newVal = getSocialRandom();
+        if (newVal === currentActive) {
+          newVal = newVal === 34 ? 19 : newVal + 1;
+          if (newVal > 34) newVal = 19;
+        }
+        currentActive = newVal;
+        if (socialSpan) {
+          socialSpan.innerText = currentActive;
+          // flash effect on the parent text
+          socialSpan.style.transition = 'transform 0.08s linear';
+          socialSpan.style.transform = 'scale(1.18)';
+          socialSpan.style.display = 'inline-block';
+          setTimeout(() => {
+            if (socialSpan) socialSpan.style.transform = '';
+          }, 120);
+        }
+      }
+      
+      function startSocialLoop() {
+        if (updateTimerId) clearTimeout(updateTimerId);
+        const nextInterval = Math.floor(Math.random() * (5000 - 3000 + 1) + 3000);
+        updateTimerId = setTimeout(() => {
+          refreshNumber();
+          startSocialLoop();
+        }, nextInterval);
+      }
+      startSocialLoop();
+      // Store cleanup
+      window.cleanupSocialProof = () => {
+        if (updateTimerId) clearTimeout(updateTimerId);
+      };
+      // override on page unload
+      window.addEventListener('beforeunload', () => {
+        if (window.cleanupSocialProof) window.cleanupSocialProof();
+        if (timerInterval) clearInterval(timerInterval);
+      });
+    } else {
+      // fallback handle initial simple script if span missing: but we already defined one. Just double safe
+    }
+    
+    // Additional performance: ensure timer not blocked by background throttling? fine.
+    // For cpa grip, button will lead to actual offer locker link. All set.
+    
+    // Optional: simulate fake "people claiming now" + timer together for better UX. 
+    // Also ensure that on mobile the button tap has immediate scale and link opens (works).
+    // Provide "active state" also for the back button, but it's just UI.
+    
+    // Also ensure that the timer expiration visual does not break any behavior.
+    // Complete everything needed: premium feel, gradient, cards, sticky header, real timer, dynamic users.
+    
+    // Because we re-declared some variables, to avoid conflicts we wrap everything and ensure final.
+    // Additional: for countdown timer, we also stop timer when page is hidden? but it's fine.
+    
+    // Finally set a global flag that everything is consistent
+    console.log("CPA Grip landing ready — Timer active, dynamic social proof, unlock ready");
+    
+    // small additional micro fix: if timer reaches zero we can add a 'offer may expire' effect
+    // but we keep user able to click CTA anyway (standard)
+  })();
+</script>
+</body>
+</html>
